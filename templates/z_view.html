@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <p>Zoo</p>
+        <a href="index">
+            <button>Home</button>
+        </a>
+        <form method="POST" action="z_view">
+            {% csrf_token %}
+            <label for="sort"></label>
+            <!-- <select id="sort" name="sort" onchange="this.form.submit()"> -->
+                <select id="sort" name="sort">
+                    <option value="---select---" selected disabled>---select---</option>
+                    <option value="z_id">z_id</option>
+                    <option value="name">name</option>
+                    <option value="s_id">s_id</option>
+                    <option value="area_covered">area_covered</option>
+                </select>
+                <input type="submit" value="Sort"/>
+        </form>
+        <table border="1">
+            <tr>
+                <th>z_id</th>
+                <th>name</th>
+                <th>s_id</th>
+                <th>area_covered</th>
+            </tr>
+            {% for result in data %}
+            <tr>
+                <td>{{result.z_id}}</td>
+                <td>{{result.name}}</td>
+                <td>{{result.s_id}}</td>
+                <td>{{result.area_covered}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+</body>
+</html>

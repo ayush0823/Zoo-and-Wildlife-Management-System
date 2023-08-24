@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wildlife_db</title>
+</head>
+<body>
+    <center>
+        <p>Zoo Edit</p>
+        <a href="index_in">
+            <button>Admin Home</button>
+        </a>
+        <form method="POST" action="/z_update/{{zooModel.z_id}}">
+            {% csrf_token %}
+        <table border="1">
+            <tr>
+                <td>z_id</td>
+                <td><input type="number" name="z_id" value="{{zooModel.z_id}}" readonly></td>
+            </tr>
+            <tr>
+                <td>name</td>
+                <td><input type="text" name="name" value="{{zooModel.name}}"></td>
+            </tr>
+            <tr>
+                <td>s_id</td>
+                <td><input type="number" name="s_id" value="{{zooModel.s_id}}"></td>
+            </tr>
+            <tr>
+                <td>area_covered</td>
+                <td><input type="number" step="0.01" name="area_covered" value="{{zooModel.area_covered}}"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="update record"></td>
+                <td>
+                    {% if messages %}
+                    {% for mess in messages %}
+                    <b style="color: green">{{mess}}</b>
+                    {% endfor %}
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+        <a href="{% url 'z_crud' %}"><div>Back</div></a>
+        </form>
+    </center>
+</body>
+</html>

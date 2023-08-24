@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <p>Migration Record Query</p>
+        <a href="index_in">
+            <button>Admin Home</button>
+        </a>
+        <table border="1">
+            <tr>
+                <th>mr_id</th>
+                <th>source_id</th>
+                <th>destination_id</th>
+                <th>animal_id</th>
+                <th>animal_count</th>
+                <th>reason</th>
+                <th>z_id</th>
+                <th>name</th>
+                <th>s_id</th>
+                <th>area_covered</th>
+            </tr>
+            {% for result in data %}
+            <tr>
+                <td>{{result.0}}</td>
+                <td>{{result.1}}</td>
+                <td>{{result.2}}</td>
+                <td>{{result.3}}</td>
+                <td>{{result.4}}</td>
+                <td>{{result.5}}</td>
+                <td>{{result.6}}</td>
+                <td>{{result.7}}</td>
+                <td>{{result.8}}</td>
+            <td>{{result.9}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+</body>
+</html>

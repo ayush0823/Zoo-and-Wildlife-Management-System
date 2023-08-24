@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <p>Zoo Delete</p>
+        <a href="index_in">
+            <button>Admin Home</button>
+        </a>
+        <a href="z_crud">
+            <button>Back</button>
+        </a>
+        
+        <form method="POST" action="/z_afterdelete/{{data.z_id}}">
+            {% csrf_token %}
+            <table border="1">
+                <tr>
+                    <td>z_id</td>
+                    <td><input type="number" name="z_id" value="{{data.z_id}}" readonly></td>
+                </tr>
+                <tr>
+                    <td>name</td>
+                    <td><input type="text" name="name" value="{{data.name}}" readonly></td>
+                </tr>
+                <tr>
+                    <td>s_id</td>
+                    <td><input type="number" name="s_id" value="{{data.s_id}}" readonly></td>
+                </tr>
+                <tr>
+                    <td>area_covered</td>
+                <td><input type="number" name="area_covered" value="{{data.area_covered}}" readonly></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="delete"></td>
+                    <td>
+                        {% if messages %}
+                        {% for mess in messages %}
+                        <b style="color: green">{{mess}}</b>
+                        {% endfor %}
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </center>
+</body>
+</html>

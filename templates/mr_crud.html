@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <p>Migration Record CRUD</p>
+        <a href="index_in">
+            <button>Admin Home</button>
+        </a>
+        <br>
+        <a href="mr_create">
+            <button>Create</button>
+        </a>
+        <form method="POST" action="mr_crud">
+            {% csrf_token %}
+            <label for="sort"></label>
+            <!-- <select id="sort" name="sort" onchange="this.form.submit()"> -->
+                <select id="sort" name="sort">
+                    <option value="---select---" selected disabled>---select---</option>
+                    <option value="mr_id">mr_id</option>
+                    <option value="source_id">source_id</option>
+                    <option value="destination_id">destination_id</option>
+                    <option value="animal_id">animal_id</option>
+                    <option value="animal_count">animal_count</option>
+                    <option value="reason">reason</option>
+                </select>
+                <input type="submit" value="Sort"/>
+            </form>
+            <table border="1">
+                <tr>
+                    <th>mr_id</th>
+                    <th>source_id</th>
+                    <th>destination_id</th>
+                    <th>animal_id</th>
+                    <th>animal_count</th>
+                    <th>reason</th>
+                </tr>   
+                {% for result in data %}
+                <tr>
+                    <td>{{result.mr_id}}</td>
+                    <td>{{result.source_id}}</td>
+                    <td>{{result.destination_id}}</td>
+                    <td>{{result.animal_id}}</td>
+                    <td>{{result.animal_count}}</td>
+                    <td>{{result.reason}}</td>
+                    <td><a href="mr_edit/{{result.mr_id}}">edit</a></td>
+                    <td><a href="mr_delete/{{result.mr_id}}">delete</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+    </center>
+</body>
+</html>

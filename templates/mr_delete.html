@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <p>Migration Record Delete</p>
+        <a href="index_in">
+            <button>Admin Home</button>
+        </a>
+        <br>
+        <a href="mr_crud">
+            <button>Back</button>
+        </a>
+        
+        <form method="POST" action="/mr_afterdelete/{{data.mr_id}}">
+            {% csrf_token %}
+            <table border="1">
+                <tr>
+                    <td>mr_id</td>
+                    <td><input type="number" name="mr_id" value="{{data.mr_id}}" readonly></td>
+                </tr>
+                <tr>
+                    <td>source_id</td>
+                    <td><input type="number" name="source_id" value="{{data.source_id}}" readonly></td>
+                </tr>
+                <tr>
+                    <td>destination_id</td>
+                    <td><input type="number" name="destination_id" value="{{data.destination_id}}" readonly></td>
+                </tr>
+                <tr>
+                    <td>animal_id</td>
+                    <td><input type="number" name="animal_id" value="{{data.animal_id}}" readonly></td>
+                </tr>
+                <tr>
+                    <td>animal_count</td>
+                    <td><input type="number" name="animal_count" value="{{data.animal_count}}" readonly></td>
+                </tr>
+                <tr>
+                    <td>reason</td>
+                    <td><input type="text" name="reason" value="{{data.reason}}" readonly></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="delete"></td>
+                    <td>
+                        {% if messages %}
+                        {% for mess in messages %}
+                        <b style="color: green">{{mess}}</b>
+                        {% endfor %}
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </center>
+</body>
+</html>
